@@ -4,10 +4,10 @@ services:
   enabled: true
   host: mockbin.org
   name: mockbin
-  port: 80
-  protocol: http
+  port: 443
+  protocol: https
   read_timeout: 60000
-  retries: 5
+  retries: 1
   routes:
   - https_redirect_status_code: 426
     name: root
