@@ -16,8 +16,6 @@ repositories {
 }
 
 dependencies {
-
-	developmentOnly("org.springframework.boot:spring-boot-docker-compose")
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	runtimeOnly("io.micrometer:micrometer-registry-prometheus")
