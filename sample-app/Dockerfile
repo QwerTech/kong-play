@@ -10,7 +10,6 @@ COPY settings.gradle.kts .
 COPY src src
 RUN ./gradlew build -DskipTests --no-daemon
 
-RUN #cp build/libs/*SNAPSHOT.jar build/application.jar
 RUN cp build/libs/*[^plain].jar build/application.jar
 RUN java -Djarmode=layertools -jar build/application.jar extract --destination build/extracted
 
