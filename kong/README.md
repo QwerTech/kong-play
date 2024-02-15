@@ -121,12 +121,12 @@ X-Kong-Admin-Latency: 14
 ## Export config
 
 ```bash
-deck gateway dump > kong.yaml
+deck gateway dump > config/kong.yaml
 ```
 
 ## Diff
 ```bash
-deck gateway diff kong.yaml 
+deck gateway diff config/kong.yaml 
 updating service mockbin  {
    "connect_timeout": 60000,
    "enabled": true,
@@ -151,7 +151,7 @@ Summary:
 
 ## Sync config
 ```bash
-deck gateway sync kong.yaml
+deck gateway sync config/kong.yaml
 updating service mockbin  {
    "connect_timeout": 60000,
    "enabled": true,
@@ -177,7 +177,7 @@ novikopa@bcd074445039 ~/git/QwerTech/tmp-mentoring/kong [master *]
  % Ddeck gateway sync
 
 novikopa@bcd074445039 ~/git/QwerTech/tmp-mentoring/kong [master *]
- % deck gateway sync kong.yaml 
+ % deck gateway sync config/kong.yaml 
 Summary:
   Created: 0
   Updated: 0
@@ -186,7 +186,7 @@ Summary:
 ```
 
 ```bash
-deck gateway diff kong.yaml 
+deck gateway diff config/kong.yaml 
 Summary:
   Created: 0
   Updated: 0
@@ -240,7 +240,7 @@ X-Kong-Admin-Latency: 17
 ```
 
 ```bash
-deck gateway diff kong.yaml 
+deck gateway diff config/kong.yaml 
 updating route root  {
    "https_redirect_status_code": 426,
    "id": "c9d25161-b7ec-4cc7-ad0b-8ae17f62c86e",
@@ -272,7 +272,7 @@ Summary:
 ```
 
 ```bash
-deck gateway sync kong.yaml
+deck gateway sync config/kong.yaml
 updating route root  {
    "https_redirect_status_code": 426,
    "id": "c9d25161-b7ec-4cc7-ad0b-8ae17f62c86e",
@@ -346,5 +346,37 @@ X-Kong-Admin-Latency: 6
     "strip_path": true,
     "tags": null,
     "updated_at": 1707244444
+}
+```
+
+# Test the route
+
+```bash
+http :8000/actuator       
+HTTP/1.1 200 
+Connection: keep-alive
+Content-Type: application/vnd.spring-boot.actuator.v3+json
+Date: Tue, 13 Feb 2024 17:16:48 GMT
+Transfer-Encoding: chunked
+Via: kong/3.5.0
+X-Kong-Proxy-Latency: 0
+X-Kong-Request-Id: d7ecf836dafae4280e731a1286523f77
+X-Kong-Upstream-Latency: 15
+
+{
+    "_links": {
+        "health": {
+            "href": "http://sample-app:8080/actuator/health",
+            "templated": false
+        },
+        "health-path": {
+            "href": "http://sample-app:8080/actuator/health/{*path}",
+            "templated": true
+        },
+        "self": {
+            "href": "http://sample-app:8080/actuator",
+            "templated": false
+        }
+    }
 }
 ```
