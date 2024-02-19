@@ -2,7 +2,7 @@ _format_version: "3.0"
 services:
 - connect_timeout: 60000
   enabled: true
-  host: sample-app
+  host: a-upstream
   name: sample-app
   port: 8080
   protocol: http
@@ -23,6 +23,75 @@ services:
     response_buffering: true
     strip_path: true
   write_timeout: 60000
+
+
+upstreams:
+  - name: a-upstream
+    targets:
+      - target: sample-app:8080
+    slots: 10000
+    algorithm: round-robin
+    hash_on: none
+    hash_fallback: none
+    healthchecks:
+      threshold: 3
+      active:
+        type: http
+        healthy:
+          interval: 1
+          successes: 1
+          http_statuses:
+            - 200
+        unhealthy:
+          interval: 1
+          timeouts: 0
+          http_statuses:
+            - 429
+            - 404
+            - 500
+            - 501
+            - 502
+            - 503
+            - 504
+            - 505
+          http_failures: 5
+        timeout: 1
+        concurrency: 10
+        http_path: /actuator/health
+        headers: {}
+      passive:
+        type: http
+        healthy:
+          successes: 80
+          http_statuses:
+            - 200
+            - 201
+            - 202
+            - 203
+            - 204
+            - 205
+            - 206
+            - 207
+            - 208
+            - 226
+            - 300
+            - 301
+            - 302
+            - 303
+            - 304
+            - 305
+            - 306
+            - 307
+            - 308
+        unhealthy:
+          timeouts: 5
+          http_statuses:
+            - 429
+            - 500
+            - 503
+          http_failures: 5
+
+
 plugins:
   # https://docs.konghq.com/hub/kong-inc/prometheus/configuration/
   - name: prometheus
