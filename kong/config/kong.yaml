@@ -37,7 +37,17 @@ plugins:
   # https://docs.konghq.com/hub/kong-inc/rate-limiting/configuration/
   - name: rate-limiting
     config:
-      minute: 10
+      second: 1
       policy: redis
       redis:
         host: redis
+
+# https://docs.konghq.com/hub/kong-inc/bot-detection/configuration/
+  - name: bot-detection
+    config:
+#      https://github.com/Kong/kong/blob/master/kong/plugins/bot-detection/rules.lua
+#      http :8000/actuator User-Agent:helloworld
+#      http :8000/actuator User-Agent:MSIECrawler
+#      http :8000/actuator User-Agent:facebookexternalhit/1.1
+      deny:
+        - helloworld
