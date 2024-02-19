@@ -33,3 +33,11 @@ plugins:
       latency_metrics: true
       bandwidth_metrics: true
       upstream_health_metrics: true
+  # https://docs.konghq.com/hub/kong-inc/rate-limiting/configuration/
+  - name: rate-limiting
+#    service: SERVICE_NAME|ID
+    config:
+      minute: 10
+      policy: redis
+      redis:
+        host: redis
