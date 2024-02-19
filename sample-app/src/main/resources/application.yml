@@ -3,3 +3,12 @@ management:
     web:
       exposure:
         include: '*'
+  metrics:
+    tags:
+      # For dashboards https://grafana.com/grafana/dashboards/6756-spring-boot-statistics/
+      # https://grafana.com/grafana/dashboards/4701-jvm-micrometer/
+      application: ${spring.application.name}
+
+spring:
+  application:
+    name: sample-app
