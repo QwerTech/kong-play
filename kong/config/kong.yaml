@@ -23,3 +23,13 @@ services:
     response_buffering: true
     strip_path: true
   write_timeout: 60000
+plugins:
+  # https://docs.konghq.com/hub/kong-inc/prometheus/configuration/
+  - name: prometheus
+    instance_name: kong_api_gw
+    config:
+      per_consumer: true
+      status_code_metrics: true
+      latency_metrics: true
+      bandwidth_metrics: true
+      upstream_health_metrics: true
