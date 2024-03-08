@@ -1,0 +1,76 @@
+version: "3"
+
+services:
+  dashboard:
+    image: "apache/apisix-dashboard"
+    restart: always
+    volumes:
+      - ./dashboard/conf.yaml:/usr/local/apisix-dashboard/conf/conf.yaml:ro
+    depends_on:
+      - etcd
+    ports:
+      - "9000:9000/tcp"
+
+  apisix:
+    image: "apache/apisix"
+    restart: always
+    volumes:
+      - ./apisix_conf/config.yaml:/usr/local/apisix/conf/config.yaml:ro
+    depends_on:
+      - etcd
+    ports:
+      - "9180:9180/tcp"
+      - "9080:9080/tcp"
+      - "9091:9091/tcp"
+      - "9443:9443/tcp"
+      - "9092:9092/tcp"
+
+  etcd:
+    image: bitnami/etcd
+#    user: root
+    restart: always
+#    volumes:
+#      - etcd_data:/bitnami/etcd
+    environment:
+#      ETCD_DATA_DIR: /etcd_data
+      ETCD_ENABLE_V2: "true"
+      ALLOW_NONE_AUTHENTICATION: "yes"
+      ETCD_ADVERTISE_CLIENT_URLS: "http://etcd:2379"
+      ETCD_LISTEN_CLIENT_URLS: "http://0.0.0.0:2379"
+    ports:
+      - "2379:2379/tcp"
+
+  prometheus:
+    image: prom/prometheus:v2.11.1
+    volumes:
+      - ./prometheus/:/etc/prometheus/
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    ports:
+      - "9090:9090"
+
+  grafana:
+    image: grafana/grafana
+    volumes:
+      - ./grafana/provisioning/:/etc/grafana/provisioning/
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+    ports:
+      - "3000:3000"
+
+  sample-app:
+    build:
+      context: ../sample-app
+    ports:
+      - "8080:8080"
+  sample-app2:
+    build:
+      context: ../sample-app
+    ports:
+      - "8082:8080"
+
+
+volumes:
+  etcd_data:
+    driver: local
