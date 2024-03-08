@@ -3,6 +3,9 @@ management:
     web:
       exposure:
         include: '*'
+  endpoint:
+    env:
+      show-values: always
   metrics:
     tags:
       # For dashboards https://grafana.com/grafana/dashboards/6756-spring-boot-statistics/
