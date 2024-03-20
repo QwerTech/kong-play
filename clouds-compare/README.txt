@@ -26,10 +26,12 @@ Compare clouds
                 Easy transition
                 One stop shop to limit their vendor list
             AWS
+                Has the largest share of both infrastructure as a service (Iaas) and platform as a service (PaaS) segments
                 Longer time experience
                 Larger offerings
                 Wide community
             GCP
+                Provides the most advanced hybrid cloud platform, Google Anthos
                 Parents of Kubernetes
                 Top leaders from SAP, Oracle with enterprise focus
         Weaknesses
@@ -37,10 +39,17 @@ Compare clouds
                 Customers being scared of Amazon scale
                 AWS is the main revenue provider and might be separated which is uncertainty
             GCP
+                Low adoption among large enterprises
                 Aggressive deprecation policies
                 GCP is not the main revenue provide for Google, thus it's lower priority
             Azure
                 Can require a lot of licences
+        Market share
+            AWS
+                31%
+            GCP
+                7%
+
     Compare features
         How?
         Compare DBS, computes, storages
@@ -134,13 +143,19 @@ Compare clouds
                 Password rotation, DDoS, autoscans
                 Compare compliance lists
 Compare prices
+    https://bluexp.netapp.com/blog/google-cloud-pricing-vs-aws-a-fair-comparison-gcp-aws-cvo-blg
+    Prices are different for different resources
+    Instance are slightly cheaper at AWS
+    Frequent access storage is cheaper on AWS
+    Infrequent cheaper at GCP
+    Archive cheaper on AWS
 Security
     https://www.pluralsight.com/resources/videos/cloud-provider-comparisons/cloud-provider-comparisons-aws-vs-azure-vs-gcp-security
     Similarities
-        All use shared reponsibility model(SRM)
+        All use shared responsibility model(SRM)
         All provide IAM with MFA, SSO, RBAC, Custom roles
         Similar approaches for DDoS protection(Azure DDoS protection, AWS Shield, Google cloud armor)
-        Seecrets management
+        Secrets management
             Azure Key vault
             Aws secrets manager
             Google secret manager
@@ -149,15 +164,15 @@ Security
         Data security
             IAM Policies
             Firewall rules and IP whitelisting
-            encryption in trasit(TLS)
-            encyption at rest(TDE)
-        Security complience
+            encryption in transit(TLS)
+            encryption at rest(TDE)
+        Security compliance
             Azure security center
             GCP trust and security center
             AWS Inspector
             All support ISO 27001,PCI, DSS etc  
-    Differencies
-        Sligtly different approaches for SRM
+    Differences
+        Slightly different approaches for SRM
             2 simple categories - AWS
             3 categories(+1 gray area) - Azure
             Complicated model - GCP
@@ -168,7 +183,24 @@ Security
             AWS and Azure offer the widest experience
 Performance
     Latencies between endpoints
+        https://cloudpingtest.com/
+        See the results in [image](ping test.png)
 Regions
+    https://www.bmc.com/blogs/cloud-availability-regions-zones/
+    Of the three major providers, Amazon’s regions and zones are the most developed. Microsoft is comparable. Google is the newest to the scene, but it really isn’t that far behind (and certainly isn’t far behind in any way that makes it less of a viable choice).
+    AWS https://aws.amazon.com/about-aws/global-infrastructure/
+        33
+        105 AZ
+        600 CloudFront
+        245 countries
+    Azure https://datacenters.microsoft.com/?selected_type=infographic#latest-news
+        62
+        300 AZ
+        190 PoP
+    GCP https://cloud.google.com/about/locations
+        40
+        121 AZ
+        187 Edge
 Trends
     https://www.infoq.com/infoq-trends-report/
 
