@@ -21,3 +21,9 @@ This should help while choosing between BFF and API Gateway
 | Low    	| Security          	| Confidentiality -<br> Degree to which a product or system ensures that data are accessible only to those authorized to have access.<br>Integrity -<br> Degree to which a system, product or component prevents unauthorized access to, or modification of, computer programs or data. 	| BFF is able to verify and respond with only the data which user has access to      	|
 | High   	| Maintainability   	| Reusability -<br> Degree to which an asset can be used in more than one system, or in building other assets.                                                                                                                                                                          	| BFF allows adapting existing components to different user devices, roles and views 	|
 
+Extensibility | Can aggregate response from upstreams | 
+
+
+
+Time to market is affected by the implementation of Quality attributes and it impacted significantly for BFF, 
+but not as high for API GW
