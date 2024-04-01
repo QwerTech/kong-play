@@ -12,6 +12,16 @@ management:
       # https://grafana.com/grafana/dashboards/4701-jvm-micrometer/
       application: ${spring.application.name}
 
+
+
+    distribution:
+#      https://coderstower.com/2022/05/30/spring-boot-observability-validating-tail-latency-with-percentiles/
+#      https://docs.spring.io/spring-boot/docs/current/reference/html/actuator.html#actuator.metrics.customizing.per-meter-properties
+#      https://povilasv.me/monitoring-spring-boot-application-with-prometheus/
+      percentiles[http.server.requests]: 0.5,0.8,0.9,0.95,0.98,0.99
+      percentiles-histogram[http.server.requests]: true
+
+
 spring:
   application:
     name: sample-app

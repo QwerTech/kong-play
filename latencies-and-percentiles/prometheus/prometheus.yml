@@ -1,0 +1,43 @@
+# Sample global config for monitoring JHipster applications
+global:
+  scrape_interval: 1s # By default, scrape targets every 15 seconds.
+  evaluation_interval: 1s # By default, scrape targets every 15 seconds.
+  # scrape_timeout is set to the global default (10s).
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  # - job_name: 'application'
+
+  #   # Override the global default and scrape targets from this job every 5 seconds.
+  #   scrape_interval: 5s
+
+  #   # scheme defaults to 'http'.
+  #   metrics_path: /management/prometheus
+  #   static_configs:
+  #     - targets:
+  #         # On MacOS, replace localhost by host.docker.internal
+  #         - localhost:8080
+
+  - job_name: 'sample-app'
+
+    # Override the global default and scrape targets from this job every 5 seconds.
+#    scrape_interval: 5s
+
+    # scheme defaults to 'http'.
+    metrics_path: /actuator/prometheus
+    static_configs:
+      - targets:
+          - 'sample-app:8080'
+
+  - job_name: 'perf-test'
+
+    # Override the global default and scrape targets from this job every 5 seconds.
+#    scrape_interval: 5s
+
+    # scheme defaults to 'http'.
+    metrics_path: /
+    static_configs:
+      - targets:
+          - 'jmeter:9270'
