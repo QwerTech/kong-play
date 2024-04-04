@@ -20,19 +20,12 @@ https://sre.google/sre-book/monitoring-distributed-systems/
 
 SAS Check for Availability there
 
-Solution Architecture in Practice check availability there
+Solution Architecture in Practice check availability there.
 Foundations of solution architecture
 
-Availabilty based on money loss
-
-
+Availability based on money loss
 
 https://github.com/johrstrom/jmeter-prometheus-plugin
-wget -O- http://localhost:9270/
 
-exporttimestamp=$(date+%Y%m%d_%H%M%S)&&\
-exportvolume_path=<wherefilesareonhost>&&\
-exportjmeter_path=/mnt/jmeter&&
-\dockerrun\--volume“${volume_path}”:${jmeter_path}\jmeter\-n<anysequenceofjmeterargs>\-t${jmeter_path}/<jmx_script>\-l${jmeter_path}/tmp/result_${timestamp}.jtl\-j${jmeter_path}/tmp/jmeter_${timestamp}.log
-
--t ${jmeter_path}/<jmx_script>
+https://micrometer.io/docs/concepts#_histograms_and_percentiles
+https://docs.spring.io/spring-boot/docs/2.0.5.RELEASE/reference/html/production-ready-metrics.html
